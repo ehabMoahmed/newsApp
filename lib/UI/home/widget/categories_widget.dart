@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/Shared/app_colors.dart';
 
 import '../../../Model/category-model.dart';
+import 'news_list_widget.dart';
 import 'one-category.dart';
 
 typedef OnCategoryClick=void Function(CategoryModel categoryModel);
@@ -35,7 +36,7 @@ class CategoriesWidget extends StatelessWidget {
               itemCount: Allcategory.length,
               itemBuilder: (context, index) =>InkWell(
                 onTap: (){
-                  CategoryClick( Allcategory[index] );
+                  CategoryClick( Allcategory[index]);
                 },
                 child: CategoryWidget(
                   title:Allcategory[index].title ,
@@ -45,7 +46,8 @@ class CategoriesWidget extends StatelessWidget {
                 ),
               ) ,
             ),
-          )
+          ),
+
 
         ],
       ),
