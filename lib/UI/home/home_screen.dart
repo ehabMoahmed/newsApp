@@ -65,7 +65,7 @@ late Widget selectedWidget ;
   }
   }
   void onCategoryItemClick(CategoryModel categoryClick){
-  selectedWidget=CategoryDetails();
+  selectedWidget=CategoryDetails(categoryModel:categoryClick ,);
   setState(() {
 
   });

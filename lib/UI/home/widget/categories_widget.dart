@@ -34,7 +34,8 @@ class CategoriesWidget extends StatelessWidget {
                 ),
 
               itemCount: Allcategory.length,
-              itemBuilder: (context, index) =>InkWell(
+              itemBuilder: (context, index) =>
+                  InkWell(
                 onTap: (){
                   CategoryClick( Allcategory[index]);
                 },
