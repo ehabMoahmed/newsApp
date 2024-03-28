@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
  import 'package:newsapp/Shared/api/api_manager.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Model/sourceResponse/Sources.dart';
+import '../../../Shared/provider/provider.dart';
 import 'news_item.dart';
 
 class NewsListWidget extends StatefulWidget {
@@ -15,8 +17,10 @@ class NewsListWidget extends StatefulWidget {
 class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
+    SettingProvider provider = Provider.of<SettingProvider>(context);
+
     return  FutureBuilder(
-      future: ApiManager.GetArticle(widget.source.id??""),
+      future: ApiManager.GetArticle(widget.source.id??"",provider.controllerText  ),
         builder:  (context, snapshot) {
         if(snapshot.connectionState==ConnectionState.waiting){
           return Center(child: CircularProgressIndicator());

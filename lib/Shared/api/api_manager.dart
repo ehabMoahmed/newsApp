@@ -7,7 +7,9 @@ import '../../Model/sourceResponse/SourceResponse.dart';
 class ApiManager {
   static const String baseUrl = "newsapi.org";
   static const String ApiSources = "/v2/top-headlines/sources";
-  static const String ApiKey = "e02af022aefe4b13ab04dde3f098b717";
+  //apiali  d3e16e322c2e4c00b4b4f4967c290a7f
+  //apibta3e  e02af022aefe4b13ab04dde3f098b717
+  static const String ApiKey = "d3e16e322c2e4c00b4b4f4967c290a7f";
 
 //https://newsapi.org/v2/top-headlines/sources?apiKey=e02af022aefe4b13ab04dde3f098b717&category=business
   static Future<SourceResponse> getsources(String categoryID) async {
@@ -21,11 +23,13 @@ class ApiManager {
     return sourceResponse;
   }
 
-  //https://newsapi.org/v2/everything?q=bitcoin&apiKey=e02af022aefe4b13ab04dde3f098b717&sources=ars-technica
-  static Future<NewsResponse> GetArticle(String sourcesID) async {
+  //https://newsapi.org/v2/everything?apiKey=02af022aefe4b13ab04dde3f098b717&sources
+  //https://newsapi.org/v2/everything?q=bitcoin&apiKey=02af022aefe4b13ab04dde3f098b717&sources
+  static Future<NewsResponse> GetArticle(String sourcesID,String searchtext) async {
     var url = Uri.https(baseUrl, "/v2/everything", {
       "apiKey": ApiKey,
-      "sourcesID": sourcesID
+      "sources": sourcesID,
+      "q":searchtext
     });
     var response = await http.get(url);
     var json = jsonDecode(response.body);

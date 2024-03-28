@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Model/category-model.dart';
+import 'package:newsapp/Shared/Theme.dart';
+import 'package:newsapp/Shared/app_colors.dart';
+import 'package:newsapp/UI/home/widget/TextFormField.dart';
 import 'package:newsapp/UI/home/widget/categories_widget.dart';
 import 'package:newsapp/UI/home/widget/categoy-details.dart';
 import 'package:newsapp/UI/home/widget/home-drawer-widget.dart';
@@ -13,7 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
 late Widget selectedWidget ;
+
 @override
   void initState() {
     // TODO: implement initState
@@ -33,7 +38,9 @@ late Widget selectedWidget ;
       ),
       child: Scaffold  (
     appBar: AppBar(
-      title: Text("News App"),
+
+      title:   Text("News App"),
+
      ),
         drawer:HomeDrawerWidget(
           itemclick:onMeniItemClick ,
@@ -65,9 +72,34 @@ late Widget selectedWidget ;
   }
   }
   void onCategoryItemClick(CategoryModel categoryClick){
-  selectedWidget=CategoryDetails(category:categoryClick ,);
+  //selectedWidget=CategoryDetails(category:categoryClick ,);
+    Navigator.pushNamed(context, CategoryDetails.routeName,arguments: categoryClick);
   setState(() {
 
   });
   }
+
+
+/*  Widget _buildSearchField() {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Search...',
+        border: InputBorder.none,
+        prefixIcon: Icon(Icons.search),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            setState(() {
+              _isSearching = false;
+            });
+          },
+        ),
+      ),
+      autofocus: true,
+      textInputAction: TextInputAction.search,
+      onSubmitted: (value) {
+        // Handle search operation here
+      },
+    );
+  }*/
 }
