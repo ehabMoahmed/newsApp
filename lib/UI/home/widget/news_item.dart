@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:newsapp/Model/newsmodel.dart';
+
+import '../../../Model/articleResponse/Articles.dart';
 
 class NewsItem extends StatelessWidget {
-  Newsmodel article;
+  Article article;
   NewsItem({required this.article});
 
   @override
@@ -14,12 +16,18 @@ class NewsItem extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
             child:
-            Image.asset( article.imagePath,height: height*0.25,width: double.infinity,fit: BoxFit.cover,)),
-        Text(article.sourcename),
-        Text(article.title),
+
+        CachedNetworkImage(
+          imageUrl:  article.urlToImage??"",
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),  ),
+        Text(article.source?.name??""),
+        Text(article.title??""),
         Align(
           alignment: Alignment.centerRight,
-            child: Text(article.date, )),
+            child: Text(article.publishedAt??"", )),
       ],
     );
   }
