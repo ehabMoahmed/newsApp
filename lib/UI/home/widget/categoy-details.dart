@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
  import 'package:newsapp/Shared/api/api_manager.dart';
+import 'package:newsapp/UI/home/widget/source-widget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../Model/category-model.dart';
-import '../../../Model/source-widget.dart';
-import '../../../Model/sourceResponse/Sources.dart';
+ import '../../../Model/sourceResponse/Sources.dart';
 import '../../../Shared/app_colors.dart';
 import '../../../Shared/provider/provider.dart';
 import '../home_screen.dart';
