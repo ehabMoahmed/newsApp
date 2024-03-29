@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Model/category-model.dart';
+import 'package:newsapp/Shared/Theme.dart';
+import 'package:newsapp/Shared/app_colors.dart';
+import 'package:newsapp/UI/home/widget/TextFormField.dart';
 import 'package:newsapp/UI/home/widget/categories_widget.dart';
 import 'package:newsapp/UI/home/widget/categoy-details.dart';
 import 'package:newsapp/UI/home/widget/home-drawer-widget.dart';
 import 'package:newsapp/UI/home/widget/settings-widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName="HomeScreen";
@@ -13,7 +17,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
 late Widget selectedWidget ;
+
 @override
   void initState() {
     // TODO: implement initState
@@ -33,7 +39,9 @@ late Widget selectedWidget ;
       ),
       child: Scaffold  (
     appBar: AppBar(
-      title: Text("News App"),
+
+      title:   Text(AppLocalizations.of(context)!.newsapp),
+
      ),
         drawer:HomeDrawerWidget(
           itemclick:onMeniItemClick ,
@@ -56,7 +64,7 @@ late Widget selectedWidget ;
     break;
 
     case MenuItem.Settings:{
-      selectedWidget=SettingsWidget();
+      selectedWidget=SettingsTab();
       Navigator.pop(context);
       setState(() {
 
@@ -65,9 +73,13 @@ late Widget selectedWidget ;
   }
   }
   void onCategoryItemClick(CategoryModel categoryClick){
-  selectedWidget=CategoryDetails(categoryModel:categoryClick ,);
+  //selectedWidget=CategoryDetails(category:categoryClick ,);
+    Navigator.pushNamed(context, CategoryDetails.routeName,arguments: categoryClick);
   setState(() {
 
   });
   }
+
+
+
 }

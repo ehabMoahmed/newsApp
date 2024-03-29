@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Model/category-model.dart';
  import 'package:newsapp/Shared/api/api_manager.dart';
+import 'package:provider/provider.dart';
 
-import '../../../Model/sourceResponse/Source.dart';
+import '../../../Model/sourceResponse/Sources.dart';
+import '../../../Shared/provider/provider.dart';
 import 'news_item.dart';
 
 class NewsListWidget extends StatefulWidget {
-final Source source; //bykhle fe al runtime const y3ny b3d create al obj
-NewsListWidget({ required this.source});
+  Source source;
+  NewsListWidget({required this.source});
 
   @override
   State<NewsListWidget> createState() => _NewsListWidgetState();
@@ -16,35 +17,47 @@ NewsListWidget({ required this.source});
 class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: ApiManager.getNews(widget.source.id?? ""),
-        builder:(context, snapshot) {
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),);
-          }else if(snapshot.hasError || snapshot.data?.status=="error"){
-           return  Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(snapshot.data?.message??snapshot.error.toString()),
-                ElevatedButton(onPressed: (){
-                  setState(() {
+    SettingProvider provider = Provider.of<SettingProvider>(context);
 
-                  });
-                },
-                    child: Text("Try again") )
-              ],
-            );
-          }
-          var newslist=snapshot.data?.articles??[];
+    return  FutureBuilder(
+      future: ApiManager.GetArticle(widget.source.id??"",provider.controllerText  ),
+        builder:  (context, snapshot) {
+        if(snapshot.connectionState==ConnectionState.waiting){
+          return Center(child: CircularProgressIndicator());
+        }
+        if(snapshot.hasError || snapshot.data?.status=="error"){
+          return  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(snapshot.data?.message??snapshot.error.toString()),
+              ElevatedButton(onPressed: (){
+                setState(() {
+
+                });
+              },
+                  child: Text("Try again") )
+            ],
+          );
+        }
+          var articles=snapshot.data?.articles??[];
           return Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => SizedBox(height: 20,),
               itemBuilder:  (context, index) => NewsItem(
-                article: newslist[index],
+                article: articles[index],
               ),
-              itemCount:   newslist .length,
+              itemCount: articles.length,
             ),
           );
-        },  );
+        },);
   }
 }
+/*Expanded(
+      child: ListView.separated(
+        separatorBuilder: (context, index) => SizedBox(height: 20,),
+          itemBuilder:  (context, index) => NewsItem(
+            article: Newsmodel.newLists[index],
+          ),
+        itemCount: Newsmodel.newLists.length,
+      ),
+    );*/
