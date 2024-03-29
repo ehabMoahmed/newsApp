@@ -1,0 +1,19 @@
+{
+  "language": "اللغة",
+  "araby":"العربي",
+  "english":"الإنجليزية",
+  "mode": "النمط",
+  "light": "نهاري",
+  "dark": "ليلي",
+  "settings": "اعدادات",
+  "sports": "الرياضه",
+  "politics": "السياسه",
+  "health": "الصحه",
+  "business": "الاعمال",
+  "enviroment": "البيئه",
+  "science": "العلوم",
+  "newsapp": " الأخبار",
+  "pickup": " اختر فئتك \nالتي تناسب اهتماماتك",
+  "category": "المجال"
+
+}

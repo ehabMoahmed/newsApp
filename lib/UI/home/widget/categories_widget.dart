@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Shared/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../Model/category-model.dart';
 import 'news_list_widget.dart';
@@ -17,7 +18,7 @@ class CategoriesWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Pick your category\n of interest",
+          Text(AppLocalizations.of(context)!.pickup,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
               color: AppColors.PickCategoryColor,
               fontSize: 22

@@ -1,0 +1,19 @@
+{
+  "language": "Language",
+  "araby":"Araby",
+  "english":"English",
+  "mode": "Mode",
+  "light": "Light",
+  "dark": "Dark",
+  "settings": "Settings",
+  "sports": "Sports",
+  "politics": "Politics",
+  "health": "Health",
+  "business": "Business",
+  "enviroment": "Enviroment",
+  "science": "Science",
+  "newsapp": "News App",
+  "pickup": "Pick your category \nof interest",
+  "category": "Category"
+
+}

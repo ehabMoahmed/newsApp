@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
  import 'package:newsapp/Shared/api/api_manager.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../Model/category-model.dart';
 import '../../../Model/source-widget.dart';
 import '../../../Model/sourceResponse/Sources.dart';
 import '../../../Shared/app_colors.dart';
 import '../../../Shared/provider/provider.dart';
+import '../home_screen.dart';
 import 'news_list_widget.dart';
 
 class CategoryDetails extends StatefulWidget {
@@ -30,8 +32,13 @@ bool isSearching=false;
       color: Colors.white,
       child: Scaffold(
         appBar: AppBar(
+        leading: isSearching?SizedBox(width: 1,):IconButton(
+    onPressed: (){
+      Navigator.pushNamed(context, HomeScreen.routeName);
+    },icon: Icon(Icons.arrow_back),
+    ),
+          title:  isSearching?  buildtextfield():Text(AppLocalizations.of(context)!.newsapp),
 
-          title:  isSearching?  buildtextfield():Text("News App"),
           actions: [
 
             !isSearching?IconButton(onPressed: (){
@@ -40,11 +47,11 @@ bool isSearching=false;
               });
             },
                 icon:Icon(Icons.search,size: 35,)  ):SizedBox(width: 1,),
-            SizedBox(width: 20,),
+            SizedBox(width:40,),
           ],
         ),
         body: FutureBuilder(
-            future:  ApiManager.getsources( category.id),
+            future:  ApiManager.getsources( category.id, ),
             builder: (context, snapshot) {
               if(snapshot.connectionState==ConnectionState.waiting){
                 return Center(child: CircularProgressIndicator());

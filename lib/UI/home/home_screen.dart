@@ -7,6 +7,7 @@ import 'package:newsapp/UI/home/widget/categories_widget.dart';
 import 'package:newsapp/UI/home/widget/categoy-details.dart';
 import 'package:newsapp/UI/home/widget/home-drawer-widget.dart';
 import 'package:newsapp/UI/home/widget/settings-widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName="HomeScreen";
@@ -39,7 +40,7 @@ late Widget selectedWidget ;
       child: Scaffold  (
     appBar: AppBar(
 
-      title:   Text("News App"),
+      title:   Text(AppLocalizations.of(context)!.newsapp),
 
      ),
         drawer:HomeDrawerWidget(
@@ -63,7 +64,7 @@ late Widget selectedWidget ;
     break;
 
     case MenuItem.Settings:{
-      selectedWidget=SettingsWidget();
+      selectedWidget=SettingsTab();
       Navigator.pop(context);
       setState(() {
 
@@ -80,26 +81,5 @@ late Widget selectedWidget ;
   }
 
 
-/*  Widget _buildSearchField() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: 'Search...',
-        border: InputBorder.none,
-        prefixIcon: Icon(Icons.search),
-        suffixIcon: IconButton(
-          icon: Icon(Icons.clear),
-          onPressed: () {
-            setState(() {
-              _isSearching = false;
-            });
-          },
-        ),
-      ),
-      autofocus: true,
-      textInputAction: TextInputAction.search,
-      onSubmitted: (value) {
-        // Handle search operation here
-      },
-    );
-  }*/
+
 }

@@ -11,11 +11,12 @@ class ApiManager {
   //apibta3e  e02af022aefe4b13ab04dde3f098b717
   static const String ApiKey = "d3e16e322c2e4c00b4b4f4967c290a7f";
 
-//https://newsapi.org/v2/top-headlines/sources?apiKey=e02af022aefe4b13ab04dde3f098b717&category=business
-  static Future<SourceResponse> getsources(String categoryID) async {
+//https://newsapi.org/v2/top-headlines/sources?apiKey=e02af022aefe4b13ab04dde3f098b717&category=business&language=en
+  static Future<SourceResponse> getsources(String categoryID ) async {
     var url = Uri.https(baseUrl, ApiSources, {
       "apiKey": ApiKey,
-      "category": categoryID
+      "category": categoryID,
+
     });
     var response = await http.get(url);
     var json = jsonDecode(response.body);
@@ -29,7 +30,8 @@ class ApiManager {
     var url = Uri.https(baseUrl, "/v2/everything", {
       "apiKey": ApiKey,
       "sources": sourcesID,
-      "q":searchtext
+      "q":searchtext,
+
     });
     var response = await http.get(url);
     var json = jsonDecode(response.body);

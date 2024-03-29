@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 typedef onMenuItemClick= void Function(MenuItem item);
 class HomeDrawerWidget extends StatelessWidget {
   onMenuItemClick itemclick;
@@ -16,7 +18,7 @@ class HomeDrawerWidget extends StatelessWidget {
                 vertical: 40,
              ),
               color: Theme.of(context).colorScheme.primary,
-              child: Text("News APP!",style: Theme.of(context).textTheme.headlineLarge)),
+              child: Text(AppLocalizations.of(context)!.newsapp,style: Theme.of(context).textTheme.headlineLarge)),
           InkWell(
             onTap:(){
             itemclick( MenuItem.Categories);
@@ -25,7 +27,7 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 Icon( Icons.list, ),
                 SizedBox(width: 10,),
-                Text("Categories",style: Theme.of(context).textTheme.labelMedium,),
+                Text(AppLocalizations.of(context)!.category,style: Theme.of(context).textTheme.labelMedium,),
               ],
             ),
           ),
@@ -38,7 +40,7 @@ class HomeDrawerWidget extends StatelessWidget {
               children: [
                 Icon( Icons.settings, ),
                 SizedBox(width: 10,),
-                Text("Settings",style: Theme.of(context).textTheme.labelMedium,),
+                Text(AppLocalizations.of(context)!.settings,style: Theme.of(context).textTheme.labelMedium,),
               ],
             ),
           ),
