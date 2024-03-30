@@ -15,9 +15,10 @@ NewsListWidget({ required this.source});
   State<NewsListWidget> createState() => _NewsListWidgetState();
 
 }
-var viewModel=NewsViewModel();
 
 class _NewsListWidgetState extends State<NewsListWidget> {
+  var viewModel=NewsViewModel();
+
   @override
   void initState() {
     // TODO: implement initState
