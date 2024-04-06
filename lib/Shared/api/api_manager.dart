@@ -1,16 +1,17 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:newsapp/Model/sourceResponse/SourceResponse.dart';
 
-import '../../Model/newsResponse/NewsResponse.dart';
+import '../../data_layer/Model/newsResponse/NewsResponse.dart';
+import '../../data_layer/Model/sourceResponse/SourceResponse.dart';
+
 class ApiManager{
 static const String baseUrl="newsapi.org"; //domain
 static const String endpoint="/v2/top-headlines/sources"; //api
 static const String apiKey="e02af022aefe4b13ab04dde3f098b717"; //parameter
 
   //awl haga 3ayz agebha api al sources
- static Future<SourceResponse> getSources(String categoryId) async {
+   Future<SourceResponse> getSources(String categoryId) async {
     //https://newsapi.org/v2/top-headlines/sources?apiKey=e02af022aefe4b13ab04dde3f098b717&category=sports
     var url=Uri.https(baseUrl,"/v2/top-headlines/sources",{
       "apiKey":apiKey,
@@ -25,7 +26,7 @@ static const String apiKey="e02af022aefe4b13ab04dde3f098b717"; //parameter
 
   }
 //https://newsapi.org/v2/everything?apiKey=e02af022aefe4b13ab04dde3f098b717&sources=business-insider
-  static Future<NewsResponse> getNews(String sourceID)async{
+    Future<NewsResponse> getNews(String sourceID)async{
   
    var url=Uri.https(baseUrl,"/v2/everything",{
      "apiKey":apiKey,

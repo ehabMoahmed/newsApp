@@ -1,9 +1,13 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/Shared/Theme.dart';
 
+import 'Shared/bloc_observer.dart';
 import 'UI/home/home_screen.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
+  // Use cubits...
   runApp(const MyApp());
 }
 

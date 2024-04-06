@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Model/category-model.dart';
-import 'package:newsapp/Shared/api/api_manager.dart';
-import 'source-widget.dart';
-import 'news_list_widget.dart';
+ import 'package:newsapp/Shared/api/api_manager.dart';
+ import '../../category_details/news_list_widget.dart';
+import '../../category_details/source-widget.dart';
 
 class CategoryDetails extends StatefulWidget {
   CategoryModel categoryModel;

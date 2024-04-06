@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/Shared/app_colors.dart';
 
- import '../../../data_layer/Model/category-model.dart';
-import '../../category_details/news_list_widget.dart';
+  import '../../data_layer/Model/category-model.dart';
 import 'one-category.dart';
 
 typedef OnCategoryClick=void Function(CategoryModel categoryModel);

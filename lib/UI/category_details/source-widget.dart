@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Model/sourceResponse/Source.dart';
+
+import '../../data_layer/Model/sourceResponse/Source.dart';
 class SourceWidget extends StatelessWidget {
   Source source;
   bool isSelected;

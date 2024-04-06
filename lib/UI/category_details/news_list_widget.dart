@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/Model/category-model.dart';
- import 'package:newsapp/Shared/api/api_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+  import 'package:newsapp/Shared/api/api_manager.dart';
 
-import '../../../Model/sourceResponse/Source.dart';
+ import '../../data_layer/Model/sourceResponse/Source.dart';
+import 'categoryViewsModel/categoryDetailsViewModel.dart';
 import 'news_item.dart';
 
 class NewsListWidget extends StatefulWidget {
@@ -16,7 +17,46 @@ NewsListWidget({ required this.source});
 class _NewsListWidgetState extends State<NewsListWidget> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+   return BlocProvider(create: (context) => CategoryDetailsViewModel()..getNews(widget.source.id),
+   child: BlocBuilder<CategoryDetailsViewModel,CategoryDetailsState>(
+     builder: (context, state) {
+       if(state is CategoryDetailsSuccessArticleState){
+
+         var newslist=state .articles??[];
+         return Expanded(
+           child: ListView.separated(
+             separatorBuilder: (context, index) => SizedBox(height: 20,),
+             itemBuilder:  (context, index) => NewsItem(
+               article: newslist[index],
+             ),
+             itemCount:   newslist .length,
+           ),
+         );
+       }
+      else if(state is CategoryDetailsErrorArticleState){
+         Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             Text(state.errorMessage),
+             ElevatedButton(onPressed: (){
+               setState(() {
+
+               });
+             },
+                 child: Text("Try again") )
+           ],
+         );
+       } {
+         return Center(child: CircularProgressIndicator(),);
+       }
+     },
+   ),
+   );
+
+  }
+}
+
+/* return FutureBuilder(
         future: ApiManager.getNews(widget.source.id?? ""),
         builder:(context, snapshot) {
           if(snapshot.connectionState==ConnectionState.waiting){
@@ -45,6 +85,4 @@ class _NewsListWidgetState extends State<NewsListWidget> {
               itemCount:   newslist .length,
             ),
           );
-        },  );
-  }
-}
+        },  );*/
